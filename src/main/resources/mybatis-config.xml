@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <package name="org.bank.security.account.domain"/>
+        <package name="org.bank.booking.domain"/>
+    </typeAliases>
+
+<!--    <typeHandlers>-->
+<!--        <package name="org.bank.booking.config"/>-->
+<!--    </typeHandlers>-->
+
+    <typeHandlers>
+        <typeHandler handler="org.bank.booking.config.JsonTypeHandler"/>
+    </typeHandlers>
+
+</configuration>

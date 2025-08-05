@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bank.booking.mapper.BookingMapper">
+    <resultMap id="bookingMap" type="org.bank.booking.domain.BookingVo">
+        <result property="bookingId" column="booking_id"/>
+        <result property="branchId" column="branch_id"/>
+        <result property="email" column="email"/>
+        <result property="finPrdtCode" column="fin_prdt_cd"/>
+        <result property="date" column="date"/>
+        <result property="time" column="time"/>
+        <result property="docInfo" column="doc_info" typeHandler="org.bank.booking.config.JsonTypeHandler"/>
+    </resultMap>
+
+
+    <insert id="insertBooking" parameterType="org.bank.booking.domain.BookingVo">
+        INSERT INTO booking
+            (booking_id, branch_id, email, fin_prdt_cd, date, time, doc_info)
+        VALUES
+            (#{bookingId}, #{branchId}, #{email}, #{finPrdtCode}, #{date}, #{time},
+             #{docInfo, typeHandler=org.bank.booking.config.JsonTypeHandler})
+    </insert>
+</mapper>
