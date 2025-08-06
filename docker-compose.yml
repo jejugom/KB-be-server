@@ -1,0 +1,7 @@
+services:
+  spring:
+    image: guno31/bank-jejugom:latest
+    container_name: bank-jejugom
+    ports:
+      - 8080:8080
+    restart: always
