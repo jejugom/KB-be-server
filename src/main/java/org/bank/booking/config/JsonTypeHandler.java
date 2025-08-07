@@ -1,5 +1,6 @@
 package org.bank.booking.config; // 혹은 공통 패키지
 
+import java.io.IOException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.ibatis.type.BaseTypeHandler;
@@ -84,7 +85,7 @@ public class JsonTypeHandler extends BaseTypeHandler<DocInfoDto> {
 	private DocInfoDto parseJson(String json) throws SQLException {
 		try {
 			return objectMapper.readValue(json, DocInfoDto.class);
-		} catch (JsonProcessingException e) {
+		} catch (IOException e) {
 			throw new SQLException("JSON 문자열을 DocInfoDto로 파싱하는 중 오류 발생", e);
 		}
 	}
