@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.bank.statistics.mapper.ProductClickStatsMapper">
+
+    <resultMap id="ProductClickStatsResultMap" type="org.bank.statistics.domain.ProductClickStatsVo">
+        <id property="id" column="id"/>
+        <result property="finPrdtCd" column="fin_prdt_cd"/>
+        <result property="clickCount" column="click_count"/>
+        <result property="lastUpdated" column="last_updated"/>
+    </resultMap>
+
+    <insert id="upsertClickStats" parameterType="map">
+        INSERT INTO product_click_stats (fin_prdt_cd, click_count)
+        VALUES (#{finPrdtCd}, #{clickCount})
+            ON DUPLICATE KEY UPDATE
+                                 click_count = click_count + VALUES(click_count),
+                                 last_updated = NOW()
+    </insert>
+
+    <select id="selectAllStats" resultMap="ProductClickStatsResultMap">
+        SELECT id, fin_prdt_cd, click_count, last_updated
+        FROM product_click_stats
+    </select>
+
+</mapper>
