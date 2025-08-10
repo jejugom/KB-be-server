@@ -1,7 +1,6 @@
 package org.bank.booking.dto;
 
 
-import java.sql.Time;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

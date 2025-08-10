@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.bank.booking.dto.DocInfoDto;
 
-import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +12,6 @@ import lombok.NoArgsConstructor;
 /**
  * 예약 정보를 담는 VO(Value Object) 클래스
  */
-@ApiModel(value = "예약 정보 VO", description = "DB의 booking 테이블과 매핑되는 핵심 객체")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
