@@ -23,20 +23,5 @@ public class ServletConfig implements WebMvcConfigurer {
 
 		registry.addResourceHandler("/assets/**")
 			.addResourceLocations("/resources/assets/");
-		// Swagger UI 리소스를 위한 핸들러 설정
-		registry.addResourceHandler("/swagger-ui.html")
-			.addResourceLocations("classpath:/META-INF/resources/");
-
-		// Swagger WebJar 리소스 설정 (Bootstrap, jQuery 등)
-		registry.addResourceHandler("/webjars/**")
-			.addResourceLocations("classpath:/META-INF/resources/webjars/");
-
-		// Swagger 메타데이터 리소스 설정
-		registry.addResourceHandler("/swagger-resources/**")
-			.addResourceLocations("classpath:/META-INF/resources/");
-
-		// API 문서 JSON 엔드포인트 설정
-		registry.addResourceHandler("/v2/api-docs")
-			.addResourceLocations("classpath:/META-INF/resources/");
 	}
 }
