@@ -4,10 +4,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.bank"}) //SPRING MVC용 컴포넌트 등록을 위한 스 캔 패키지
+@ComponentScan(basePackages = {"org.bank"}) //SPRING MVC용 컴포넌트 등록을 위한 스캔 패키지
 public class ServletConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -24,4 +26,13 @@ public class ServletConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/assets/**")
 			.addResourceLocations("/resources/assets/");
 	}
+
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+		registry.viewResolver(resolver);
+	}
+
 }

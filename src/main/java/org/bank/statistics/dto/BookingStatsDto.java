@@ -11,4 +11,6 @@ public class BookingStatsDto {
 
 	private Long branchId;
 	private Long bookingCount;
+
+	private String branchName;
 }

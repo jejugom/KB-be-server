@@ -1,5 +1,6 @@
 package org.bank.statistics.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.bank.statistics.dto.BookingStatsDto;
@@ -38,5 +39,11 @@ public class BookingStatsServiceImpl implements BookingStatsService {
 				bookingStatsMapper.updateBookingStats(existing);
 			}
 		}
+	}
+
+	@Override
+	public List<BookingStatsDto> getTopBookingStats(int limit) {
+		log.info("Fetching top {} booking stats", limit);
+		return bookingStatsMapper.findTopBookingStats(limit);
 	}
 }
