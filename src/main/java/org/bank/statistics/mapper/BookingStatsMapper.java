@@ -1,5 +1,7 @@
 package org.bank.statistics.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,4 +15,6 @@ public interface BookingStatsMapper {
 	void insertBookingStats(BookingStatsDto dto);
 
 	void updateBookingStats(BookingStatsDto dto);
+
+	List<BookingStatsDto> findTopBookingStats(int limit);
 }

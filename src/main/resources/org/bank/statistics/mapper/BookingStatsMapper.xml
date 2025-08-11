@@ -6,14 +6,24 @@
 <mapper namespace="org.bank.statistics.mapper.BookingStatsMapper">
 
     <resultMap id="bookingStatsResultMap" type="org.bank.statistics.dto.BookingStatsDto">
-        <id property="branchId" column="branch_id" />
-        <result property="bookingCount" column="booking_count" />
+        <id property="branchId" column="branch_id"/>
+        <result property="bookingCount" column="booking_count"/>
     </resultMap>
 
     <select id="findByBranchId" parameterType="long" resultMap="bookingStatsResultMap">
         SELECT branch_id, booking_count
         FROM booking_stats
         WHERE branch_id = #{branchId}
+    </select>
+
+    <select id="findTopBookingStats" parameterType="int" resultType="org.bank.statistics.dto.BookingStatsDto">
+        SELECT bs.branch_id     AS branchId,
+               b.branch_name    AS branchName,
+               bs.booking_count AS bookingCount
+        FROM booking_stats bs
+                 JOIN branch b ON bs.branch_id = b.branch_id
+        ORDER BY bs.booking_count DESC
+            LIMIT #{limit}
     </select>
 
     <insert id="insertBookingStats" parameterType="org.bank.statistics.dto.BookingStatsDto">
@@ -23,7 +33,8 @@
 
     <update id="updateBookingStats" parameterType="org.bank.statistics.dto.BookingStatsDto">
         UPDATE booking_stats
-        SET booking_count = #{bookingCount}, last_updated = NOW()
+        SET booking_count = #{bookingCount},
+            last_updated  = NOW()
         WHERE branch_id = #{branchId}
     </update>
 
