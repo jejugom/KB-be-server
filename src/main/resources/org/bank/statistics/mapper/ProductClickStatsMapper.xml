@@ -14,10 +14,10 @@
 
     <insert id="upsertClickStats" parameterType="map">
         INSERT INTO product_click_stats (fin_prdt_cd, click_count)
-        VALUES (#{finPrdtCd}, #{clickCount})
-            ON DUPLICATE KEY UPDATE
-                                 click_count = click_count + VALUES(click_count),
-                                 last_updated = NOW()
+        VALUES (#{finPrdtCd}, #{clickCount}) ON DUPLICATE KEY
+        UPDATE
+            click_count = click_count +
+        VALUES (click_count), last_updated = NOW()
     </insert>
 
     <select id="selectAllStats" resultMap="ProductClickStatsResultMap">

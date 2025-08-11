@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.bank.statistics.mapper.BookingStatsMapper">
+
+    <resultMap id="bookingStatsResultMap" type="org.bank.statistics.dto.BookingStatsDto">
+        <id property="branchId" column="branch_id" />
+        <result property="bookingCount" column="booking_count" />
+    </resultMap>
+
+    <select id="findByBranchId" parameterType="long" resultMap="bookingStatsResultMap">
+        SELECT branch_id, booking_count
+        FROM booking_stats
+        WHERE branch_id = #{branchId}
+    </select>
+
+    <insert id="insertBookingStats" parameterType="org.bank.statistics.dto.BookingStatsDto">
+        INSERT INTO booking_stats (branch_id, booking_count, last_updated)
+        VALUES (#{branchId}, #{bookingCount}, NOW())
+    </insert>
+
+    <update id="updateBookingStats" parameterType="org.bank.statistics.dto.BookingStatsDto">
+        UPDATE booking_stats
+        SET booking_count = #{bookingCount}, last_updated = NOW()
+        WHERE branch_id = #{branchId}
+    </update>
+
+</mapper>
