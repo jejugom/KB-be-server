@@ -19,12 +19,14 @@ public class BookingController {
 
 	private final BookingService bookingService;
 
+	/**
+	 * 사용자 서버에서 전달해준 예약 내역 은행 서버에 저장
+	 * @param requestDto
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity<Void> addBooking(@RequestBody BankBookingRequestDto requestDto) {
 		bookingService.addBooking(requestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
-
-	@GetMapping("/test")
-	public String welcome() { return "welcome"; }
 }

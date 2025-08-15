@@ -22,6 +22,12 @@ public class BookingStatsViewController {
 
 	private final BookingStatsViewService bookingStatsViewService;
 
+	/**
+	 * 가장 많이 예약된 지점 5곳 조회하는 메서드
+	 * @param limit
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/top-branch")
 	public String viewTopBookings(@RequestParam(defaultValue = "5") int limit, Model model) {
 		// limit 값에 맞춰 조회
