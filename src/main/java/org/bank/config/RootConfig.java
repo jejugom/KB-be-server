@@ -21,8 +21,9 @@ import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.log4j.Log4j2;
 
 @Configuration
-@PropertySource({"classpath:/application-dev.properties"})
-@MapperScan("org.bank.booking.mapper")
+@PropertySource({"classpath:/application.properties", "classpath:/application-local.properties"})
+@MapperScan({"org.bank.booking.mapper",
+	"org.bank.statistics.mapper"})
 @ComponentScan(basePackages = {
 	"org.bank"
 })
@@ -71,5 +72,4 @@ public class RootConfig {
 		DataSourceTransactionManager manager = new DataSourceTransactionManager(dataSource());
 		return manager;
 	}
-
 }
