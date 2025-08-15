@@ -26,10 +26,14 @@ public class ProductClickStatsController {
 	private final ProductClickStatsService productClickStatsService;
 	private final BookingStatsService bookingStatsService;
 
+	/**
+	 * 상담 예약하기 버튼 클릭시 기록되는 로그를 바탕으로 집계된 데이터를 전달받고 DB에 저장
+	 * @param statsList
+	 * @return
+	 */
 	@PostMapping("/click-stats")
 	public ResponseEntity<Void> receiveClickStats(@RequestBody List<ProductClickStatsDto> statsList) {
 
-		// Map으로 변환 (finPrdtCd -> clickCount)
 		Map<String, Long> statsMap = statsList.stream()
 			.collect(Collectors.toMap(
 				ProductClickStatsDto::getFinPrdtCd,
@@ -41,6 +45,11 @@ public class ProductClickStatsController {
 		return ResponseEntity.ok().build();
 	}
 
+	/**
+	 * 상담 예약 통계 데이터를 저장
+	 * @param statsList
+	 * @return
+	 */
 	@PostMapping("/booking-stats")
 	public ResponseEntity<Void> receiveBookingStats(@RequestBody List<BookingStatsDto> statsList) {
 		Map<Long, Long> statsMap = statsList.stream()

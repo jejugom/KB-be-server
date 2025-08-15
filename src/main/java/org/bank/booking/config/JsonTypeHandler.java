@@ -14,19 +14,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * MyBatis에서 DocInfoDto 객체를 JSON 문자열로 변환하여 데이터베이스에 저장하고,
- * 데이터베이스의 JSON 문자열을 DocInfoDto 객체로 변환하는 역할을 하는 커스텀 TypeHandler 입니다.
+ * MyBatis에서 DocInfoDto 객체를 JSON 문자열로 변환하여 DB에 저장
+ * DB의 JSON 문자열을 DocInfoDto 객체로 변환하는 역할을 하는 커스텀 TypeHandler
  */
-@MappedTypes(DocInfoDto.class) // 이 TypeHandler가 처리할 Java 타입을 지정합니다.
+@MappedTypes(DocInfoDto.class) // 처리할 Java 타입을 지정
 public class JsonTypeHandler extends BaseTypeHandler<DocInfoDto> {
 
-	// JSON 직렬화/역직렬화를 위한 Jackson ObjectMapper (thread-safe)
+	// JSON 직렬화/역직렬화를 위한 Jackson ObjectMapper
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
 	/**
-	 * DocInfoDto 객체를 JSON 문자열로 변환하여 PreparedStatement에 파라미터로 설정합니다.
+	 * DocInfoDto 객체를 JSON 문자열로 변환하여 PreparedStatement에 파라미터로 설정
 	 * @param ps PreparedStatement 객체
-	 * @param i 파라미터 인덱스
+	 * @param i
 	 * @param parameter 변환할 DocInfoDto 객체
 	 * @param jdbcType JDBC 타입
 	 */
@@ -41,7 +41,7 @@ public class JsonTypeHandler extends BaseTypeHandler<DocInfoDto> {
 	}
 
 	/**
-	 * ResultSet에서 컬럼 이름으로 JSON 문자열을 가져와 DocInfoDto 객체로 변환합니다.
+	 * ResultSet에서 컬럼 이름으로 JSON 문자열을 가져와 DocInfoDto 객체로 변환
 	 * @param rs ResultSet 객체
 	 * @param columnName 컬럼 이름
 	 * @return 변환된 DocInfoDto 객체 (JSON이 null이면 null 반환)
@@ -53,7 +53,7 @@ public class JsonTypeHandler extends BaseTypeHandler<DocInfoDto> {
 	}
 
 	/**
-	 * ResultSet에서 컬럼 인덱스로 JSON 문자열을 가져와 DocInfoDto 객체로 변환합니다.
+	 * ResultSet에서 컬럼 인덱스로 JSON 문자열을 가져와 DocInfoDto 객체로 변환
 	 * @param rs ResultSet 객체
 	 * @param columnIndex 컬럼 인덱스
 	 * @return 변환된 DocInfoDto 객체 (JSON이 null이면 null 반환)
@@ -65,7 +65,7 @@ public class JsonTypeHandler extends BaseTypeHandler<DocInfoDto> {
 	}
 
 	/**
-	 * CallableStatement에서 컬럼 인덱스로 JSON 문자열을 가져와 DocInfoDto 객체로 변환합니다.
+	 * CallableStatement에서 컬럼 인덱스로 JSON 문자열을 가져와 DocInfoDto 객체로 변환
 	 * @param cs CallableStatement 객체
 	 * @param columnIndex 컬럼 인덱스
 	 * @return 변환된 DocInfoDto 객체 (JSON이 null이면 null 반환)
@@ -77,7 +77,7 @@ public class JsonTypeHandler extends BaseTypeHandler<DocInfoDto> {
 	}
 
 	/**
-	 * JSON 문자열을 파싱하여 DocInfoDto 객체로 변환하는 private 헬퍼 메서드입니다.
+	 * JSON 문자열을 파싱하여 DocInfoDto 객체로 변환하는 private 헬퍼 메서드
 	 * @param json 파싱할 JSON 문자열
 	 * @return 변환된 DocInfoDto 객체
 	 * @throws SQLException JSON 파싱 중 오류 발생 시

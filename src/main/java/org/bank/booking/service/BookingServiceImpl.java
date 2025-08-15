@@ -15,6 +15,10 @@ public class BookingServiceImpl implements BookingService {
 
 	private final BookingMapper bookingMapper;
 
+	/**
+	 * 은행서버에 예약 내역 저장
+	 * @param dto
+	 */
 	@Override
 	public void addBooking(BankBookingRequestDto dto) {
 		BookingVo bookingVo = BookingVo.builder()

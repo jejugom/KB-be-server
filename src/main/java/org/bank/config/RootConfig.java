@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j2;
 @Configuration
 @PropertySource({"classpath:/application.properties", "classpath:/application-local.properties"})
 @MapperScan({"org.bank.booking.mapper",
-"org.bank.statistics.mapper"})
+	"org.bank.statistics.mapper"})
 @ComponentScan(basePackages = {
 	"org.bank"
 })
@@ -72,5 +72,4 @@ public class RootConfig {
 		DataSourceTransactionManager manager = new DataSourceTransactionManager(dataSource());
 		return manager;
 	}
-
 }
